@@ -1,5 +1,6 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="wiky.js"></script>
 
 <title>Page content</title>
 
@@ -29,7 +30,7 @@
 	    	success: function(data) {
 	    		for (name in data["query"]["pages"]) {
 	    			value = data["query"]["pages"][name]["extract"];
-	    			document.getElementById("documentContent").textContent = value;
+	    			$("#documentContent").html(wiky.process(value));
 	    		}
 	    	}
 		});
