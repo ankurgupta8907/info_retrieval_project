@@ -99,7 +99,7 @@ function render_results(data, inputtext) {
 
 
 function re_search(suggested_word) {
-	document.getElementById("inputtext").value = suggested_word;
+	document.getElementById("inputtext").value = suggested_word.split('_').join(' ');
 	displayresults(suggested_word);
 }
 
@@ -120,7 +120,7 @@ function spell_check(data) {
 		}
 	}
 	var spellcheck = document.getElementById("spellcheck");
-	spellcheck.innerHTML = "<h2>Did you mean: <a onclick=re_search('"  + suggested_word + "'); href='javascript:void(0)'>" + suggested_word + "</a></h2>";
+	spellcheck.innerHTML = "<h2>Did you mean: <a onclick=re_search('"  + suggested_word + "'); href='javascript:void(0)'>" + suggested_word.split('_').join(' ') + "</a></h2>";
 	// alert(spellcheck.innerHTML);
 	$("#spell").show();
 }
@@ -132,7 +132,7 @@ function displayresults(inputtext) {
 	$("#entity").empty();
 	$("#spellcheck").empty();
 
-	spell_check_url = "http://localhost:8983/solr/inforetrievalproject/spell?spellcheck=true&wt=json&json.wrf=callback&indent=true&q=" + inputtext;
+	spell_check_url = "http://localhost:8983/solr/tempinfoproject/spell?spellcheck=true&wt=json&rows=5&json.wrf=callback&indent=true&q=" + inputtext;
 	// alert(spell_check_url);
 
 	$.ajax({
